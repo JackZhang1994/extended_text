@@ -82,6 +82,28 @@ class _TextSelectionDemoState extends State<TextSelectionDemo> {
                     selectionEnabled: true,
                     textSelectionControls:
                         _myExtendedMaterialTextSelectionControls,
+                    onLongTapStart: (ExtendedTextSelectionState state) {
+                      String text = state.widget.data;
+                      state.textEditingValue = TextEditingValue(
+                          text: text,
+                          selection: TextSelection(
+                            baseOffset: 0,
+                            extentOffset: text.length,
+                          ));
+                      state.bringIntoView(state.textEditingValue.selection.extent);
+                      state.showToolbar();
+                    },
+                    onDoubleTapDown: (ExtendedTextSelectionState state) {
+                      String text = state.widget.data;
+                      state.textEditingValue = TextEditingValue(
+                          text: text,
+                          selection: TextSelection(
+                            baseOffset: 0,
+                            extentOffset: text.length,
+                          ));
+                      state.bringIntoView(state.textEditingValue.selection.extent);
+                      state.showToolbar();
+                    },
                   ),
                 );
               },
@@ -110,26 +132,25 @@ class _TextSelectionDemoState extends State<TextSelectionDemo> {
           },
           onPointerMove: (PointerMoveEvent value) {
             //clear other selection
-            for (final ExtendedTextSelectionState state in states) {
-              state.clearSelection();
-            }
+            // for (final ExtendedTextSelectionState state in states) {
+            //   state.clearSelection();
+            // }
           },
-          onPointerUp: (value) {
-            for (final ExtendedTextSelectionState state in states) {
-              if (state.containsPosition(value.position)) {
-                String text = state.widget.data;
-                state.textEditingValue = TextEditingValue(
-                    text: text,
-                    selection: TextSelection(
-                      baseOffset: 0,
-                      extentOffset: text.length,
-                    ));
-                state.bringIntoView(state.textEditingValue.selection.extent);
-                state.showToolbar();
-
-              }
-            }
-          },
+          // onPointerUp: (value) {
+          //   for (final ExtendedTextSelectionState state in states) {
+          //     if (state.containsPosition(value.position)) {
+          //       String text = state.widget.data;
+          //       state.textEditingValue = TextEditingValue(
+          //           text: text,
+          //           selection: TextSelection(
+          //             baseOffset: 0,
+          //             extentOffset: text.length,
+          //           ));
+          //       state.bringIntoView(state.textEditingValue.selection.extent);
+          //       state.showToolbar();
+          //     }
+          //   }
+          // },
         );
       },
     );

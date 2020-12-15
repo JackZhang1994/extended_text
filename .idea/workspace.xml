@@ -3,10 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="1eb73f40-bbbd-4992-8cc4-d018537796cb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Flutter/.last_build_id" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/.last_build_id" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/lib/pages/text_selection_demo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/pages/text_selection_demo.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/extended_text.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/extended_text.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/selection/extended_text_selection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/selection/extended_text_selection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,22 +59,22 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1878" height="280" key="GridCell.Tab.0.bottom" timestamp="1608006317165">
+    <state width="1878" height="280" key="GridCell.Tab.0.bottom" timestamp="1608016355210">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state width="1878" height="280" key="GridCell.Tab.0.bottom/0.25.1920.1055@0.25.1920.1055" timestamp="1608006317165" />
-    <state width="1878" height="280" key="GridCell.Tab.0.center" timestamp="1608006317164">
+    <state width="1878" height="280" key="GridCell.Tab.0.bottom/0.25.1920.1055@0.25.1920.1055" timestamp="1608016355210" />
+    <state width="1878" height="280" key="GridCell.Tab.0.center" timestamp="1608016355210">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state width="1878" height="280" key="GridCell.Tab.0.center/0.25.1920.1055@0.25.1920.1055" timestamp="1608006317164" />
-    <state width="1878" height="280" key="GridCell.Tab.0.left" timestamp="1608006317162">
+    <state width="1878" height="280" key="GridCell.Tab.0.center/0.25.1920.1055@0.25.1920.1055" timestamp="1608016355210" />
+    <state width="1878" height="280" key="GridCell.Tab.0.left" timestamp="1608016355209">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state width="1878" height="280" key="GridCell.Tab.0.left/0.25.1920.1055@0.25.1920.1055" timestamp="1608006317162" />
-    <state width="1878" height="280" key="GridCell.Tab.0.right" timestamp="1608006317164">
+    <state width="1878" height="280" key="GridCell.Tab.0.left/0.25.1920.1055@0.25.1920.1055" timestamp="1608016355209" />
+    <state width="1878" height="280" key="GridCell.Tab.0.right" timestamp="1608016355210">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state width="1878" height="280" key="GridCell.Tab.0.right/0.25.1920.1055@0.25.1920.1055" timestamp="1608006317164" />
+    <state width="1878" height="280" key="GridCell.Tab.0.right/0.25.1920.1055@0.25.1920.1055" timestamp="1608016355210" />
     <state x="461" y="188" key="SettingsEditor" timestamp="1608004241177">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
@@ -84,9 +88,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$USER_HOME$/.pub-cache/git/extended_text_library-12e6c48377f6f4fe9447d1c0d2181106512b5f7d/lib/src/selection/extended_text_selection.dart</url>
-          <line>373</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$USER_HOME$/.pub-cache/git/extended_text_library-12e6c48377f6f4fe9447d1c0d2181106512b5f7d/lib/src/selection/extended_text_selection_overlay.dart</url>
+          <line>202</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

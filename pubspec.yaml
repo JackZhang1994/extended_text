@@ -16,7 +16,7 @@ dependencies:
   extended_text_library:
     git:
       url: 'https://github.com/JackZhang1994/extended_text_library.git'
-      ref: 4.0.3+1
+      ref: 4.0.3+2
 
 dev_dependencies:
   flutter_test:

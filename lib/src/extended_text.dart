@@ -1,4 +1,5 @@
 import 'dart:ui' as ui show TextHeightBehavior, BoxWidthStyle, BoxHeightStyle;
+
 import 'package:extended_text/extended_text.dart';
 import 'package:extended_text/src/extended_rich_text.dart';
 import 'package:flutter/foundation.dart';
@@ -29,6 +30,8 @@ class ExtendedText extends StatelessWidget {
     this.onSpecialTextTap,
     this.selectionEnabled = false,
     this.onTap,
+    this.onLongTapStart,
+    this.onDoubleTapDown,
     this.selectionColor,
     this.dragStartBehavior = DragStartBehavior.start,
     this.textSelectionControls,
@@ -58,6 +61,8 @@ class ExtendedText extends StatelessWidget {
     this.onSpecialTextTap,
     this.selectionEnabled = false,
     this.onTap,
+    this.onLongTapStart,
+    this.onDoubleTapDown,
     this.selectionColor,
     this.dragStartBehavior = DragStartBehavior.start,
     this.textSelectionControls,
@@ -95,6 +100,8 @@ class ExtendedText extends StatelessWidget {
 
   ///Called when the user taps on this text.
   final GestureTapCallback onTap;
+  final Function(ExtendedTextSelectionState state) onLongTapStart;
+  final Function(ExtendedTextSelectionState state) onDoubleTapDown;
 
   ///whether enable selection
   final bool selectionEnabled;
@@ -210,14 +217,10 @@ class ExtendedText extends StatelessWidget {
   Widget build(BuildContext context) {
     final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
     TextStyle effectiveTextStyle = style;
-    if (style == null || style.inherit)
-      effectiveTextStyle = defaultTextStyle.style.merge(style);
-    if (MediaQuery.boldTextOverride(context))
-      effectiveTextStyle = effectiveTextStyle
-          .merge(const TextStyle(fontWeight: FontWeight.bold));
+    if (style == null || style.inherit) effectiveTextStyle = defaultTextStyle.style.merge(style);
+    if (MediaQuery.boldTextOverride(context)) effectiveTextStyle = effectiveTextStyle.merge(const TextStyle(fontWeight: FontWeight.bold));
 
-    TextSpan innerTextSpan = specialTextSpanBuilder?.build(data,
-        textStyle: effectiveTextStyle, onTap: onSpecialTextTap);
+    TextSpan innerTextSpan = specialTextSpanBuilder?.build(data, textStyle: effectiveTextStyle, onTap: onSpecialTextTap);
 
     innerTextSpan ??= TextSpan(
       style: effectiveTextStyle,
@@ -231,43 +234,39 @@ class ExtendedText extends StatelessWidget {
     if (selectionEnabled) {
       result = ExtendedTextSelection(
         textAlign: textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start,
-        textDirection: textDirection ??
-            Directionality.of(
-                context), // RichText uses Directionality.of to obtain a default if this is null.
-        locale:
-            locale, // RichText uses Localizations.localeOf to obtain a default if this is null
+        textDirection: textDirection ?? Directionality.of(context),
+        // RichText uses Directionality.of to obtain a default if this is null.
+        locale: locale,
+        // RichText uses Localizations.localeOf to obtain a default if this is null
         softWrap: softWrap ?? defaultTextStyle.softWrap,
         overflow: overflow ?? defaultTextStyle.overflow,
-        textScaleFactor:
-            textScaleFactor ?? MediaQuery.textScaleFactorOf(context),
+        textScaleFactor: textScaleFactor ?? MediaQuery.textScaleFactorOf(context),
         maxLines: maxLines ?? defaultTextStyle.maxLines,
         text: innerTextSpan,
         selectionColor: selectionColor ?? Theme.of(context).textSelectionColor,
         dragStartBehavior: dragStartBehavior,
         onTap: onTap,
+        onLongTapStart: onLongTapStart,
+        onDoubleTapDown: onDoubleTapDown,
         data: data ?? textSpanToActualText(innerTextSpan),
         textSelectionControls: textSelectionControls,
-        textHeightBehavior:
-            textHeightBehavior ?? defaultTextStyle.textHeightBehavior,
+        textHeightBehavior: textHeightBehavior ?? defaultTextStyle.textHeightBehavior,
         textWidthBasis: textWidthBasis ?? defaultTextStyle.textWidthBasis,
         overFlowWidget: overflowWidget,
       );
     } else {
       result = ExtendedRichText(
         textAlign: textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start,
-        textDirection: textDirection ??
-            Directionality.of(
-                context), // RichText uses Directionality.of to obtain a default if this is null.
-        locale:
-            locale, // RichText uses Localizations.localeOf to obtain a default if this is null
+        textDirection: textDirection ?? Directionality.of(context),
+        // RichText uses Directionality.of to obtain a default if this is null.
+        locale: locale,
+        // RichText uses Localizations.localeOf to obtain a default if this is null
         softWrap: softWrap ?? defaultTextStyle.softWrap,
         overflow: overflow ?? defaultTextStyle.overflow,
-        textScaleFactor:
-            textScaleFactor ?? MediaQuery.textScaleFactorOf(context),
+        textScaleFactor: textScaleFactor ?? MediaQuery.textScaleFactorOf(context),
         maxLines: maxLines ?? defaultTextStyle.maxLines,
         text: innerTextSpan,
-        textHeightBehavior:
-            textHeightBehavior ?? defaultTextStyle.textHeightBehavior,
+        textHeightBehavior: textHeightBehavior ?? defaultTextStyle.textHeightBehavior,
         textWidthBasis: textWidthBasis ?? defaultTextStyle.textWidthBasis,
         overflowWidget: overflowWidget,
         hasFocus: false,
@@ -303,32 +302,19 @@ class ExtendedText extends StatelessWidget {
     super.debugFillProperties(properties);
     properties.add(StringProperty('data', data, showName: false));
     if (textSpan != null) {
-      properties.add(textSpan.toDiagnosticsNode(
-          name: 'textSpan', style: DiagnosticsTreeStyle.transition));
+      properties.add(textSpan.toDiagnosticsNode(name: 'textSpan', style: DiagnosticsTreeStyle.transition));
     }
     style?.debugFillProperties(properties);
-    properties.add(
-        EnumProperty<TextAlign>('textAlign', textAlign, defaultValue: null));
-    properties.add(EnumProperty<TextDirection>('textDirection', textDirection,
-        defaultValue: null));
-    properties
-        .add(DiagnosticsProperty<Locale>('locale', locale, defaultValue: null));
+    properties.add(EnumProperty<TextAlign>('textAlign', textAlign, defaultValue: null));
+    properties.add(EnumProperty<TextDirection>('textDirection', textDirection, defaultValue: null));
+    properties.add(DiagnosticsProperty<Locale>('locale', locale, defaultValue: null));
     properties.add(FlagProperty('softWrap',
-        value: softWrap,
-        ifTrue: 'wrapping at box width',
-        ifFalse: 'no wrapping except at line break characters',
-        showName: true));
-    properties.add(
-        EnumProperty<TextOverflow>('overflow', overflow, defaultValue: null));
-    properties.add(
-        DoubleProperty('textScaleFactor', textScaleFactor, defaultValue: null));
+        value: softWrap, ifTrue: 'wrapping at box width', ifFalse: 'no wrapping except at line break characters', showName: true));
+    properties.add(EnumProperty<TextOverflow>('overflow', overflow, defaultValue: null));
+    properties.add(DoubleProperty('textScaleFactor', textScaleFactor, defaultValue: null));
     properties.add(IntProperty('maxLines', maxLines, defaultValue: null));
-    properties.add(EnumProperty<TextWidthBasis>(
-        'textWidthBasis', textWidthBasis,
-        defaultValue: null));
-    properties.add(DiagnosticsProperty<ui.TextHeightBehavior>(
-        'textHeightBehavior', textHeightBehavior,
-        defaultValue: null));
+    properties.add(EnumProperty<TextWidthBasis>('textWidthBasis', textWidthBasis, defaultValue: null));
+    properties.add(DiagnosticsProperty<ui.TextHeightBehavior>('textHeightBehavior', textHeightBehavior, defaultValue: null));
     if (semanticsLabel != null) {
       properties.add(StringProperty('semanticsLabel', semanticsLabel));
     }

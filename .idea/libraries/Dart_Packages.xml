@@ -110,7 +110,7 @@
         <entry key="extended_text_library">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/extended_text_library-12e6c48377f6f4fe9447d1c0d2181106512b5f7d/lib" />
+              <option value="$USER_HOME$/.pub-cache/git/extended_text_library-ed24bf6717c7fd24b5c299e9936cc01837c40672/lib" />
             </list>
           </value>
         </entry>
@@ -362,7 +362,7 @@
       </option>
     </properties>
     <CLASSES>
-      <root url="file://$USER_HOME$/.pub-cache/git/extended_text_library-12e6c48377f6f4fe9447d1c0d2181106512b5f7d/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/extended_text_library-ed24bf6717c7fd24b5c299e9936cc01837c40672/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/_fe_analyzer_shared-7.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/analyzer-0.39.17/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/args-1.6.0/lib" />

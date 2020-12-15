@@ -47,8 +47,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "4.0.3+1"
-      resolved-ref: "12e6c48377f6f4fe9447d1c0d2181106512b5f7d"
+      ref: "4.0.3+2"
+      resolved-ref: ed24bf6717c7fd24b5c299e9936cc01837c40672
       url: "https://github.com/JackZhang1994/extended_text_library.git"
     source: git
     version: "4.0.3"
