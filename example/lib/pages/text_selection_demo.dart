@@ -114,6 +114,22 @@ class _TextSelectionDemoState extends State<TextSelectionDemo> {
               state.clearSelection();
             }
           },
+          onPointerUp: (value) {
+            for (final ExtendedTextSelectionState state in states) {
+              if (state.containsPosition(value.position)) {
+                String text = state.widget.data;
+                state.textEditingValue = TextEditingValue(
+                    text: text,
+                    selection: TextSelection(
+                      baseOffset: 0,
+                      extentOffset: text.length,
+                    ));
+                state.bringIntoView(state.textEditingValue.selection.extent);
+                state.showToolbar();
+
+              }
+            }
+          },
         );
       },
     );
