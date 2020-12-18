@@ -149,19 +149,19 @@ class ExtendedTextSelectionState extends State<ExtendedTextSelection>
   CommonTextSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder;
   final ClipboardStatusNotifier _clipboardStatus = kIsWeb ? null : ClipboardStatusNotifier();
 
-  FocusNode _focusNode;
-  FocusAttachment _focusAttachment;
-
-  FocusNode get _effectiveFocusNode => _focusNode ??= FocusNode();
-
-  bool get _hasFocus => _effectiveFocusNode.hasFocus;
+  // FocusNode _focusNode;
+  // FocusAttachment _focusAttachment;
+  //
+  // FocusNode get _effectiveFocusNode => _focusNode ??= FocusNode();
+  //
+  // bool get _hasFocus => _effectiveFocusNode.hasFocus;
 
   @override
   void initState() {
     _textSelectionControls = widget.textSelectionControls;
     _clipboardStatus?.addListener(_onChangedClipboardStatus);
-    _focusAttachment = _effectiveFocusNode.attach(context);
-    _effectiveFocusNode.addListener(_handleFocusChanged);
+    // _focusAttachment = _effectiveFocusNode.attach(context);
+    // _effectiveFocusNode.addListener(_handleFocusChanged);
     _selectionGestureDetectorBuilder = CommonTextSelectionGestureDetectorBuilder(
       delegate: this,
       hideToolbar: hideToolbar,
@@ -207,8 +207,8 @@ class ExtendedTextSelectionState extends State<ExtendedTextSelection>
     _pointerHandlerState?.selectionStates?.remove(this);
     _clipboardStatus?.removeListener(_onChangedClipboardStatus);
     _clipboardStatus?.dispose();
-    _focusNode?.dispose();
-    _focusAttachment?.detach();
+    // _focusNode?.dispose();
+    // _focusAttachment?.detach();
     _closeInputConnectionIfNeeded();
     super.dispose();
   }
@@ -227,16 +227,16 @@ class ExtendedTextSelectionState extends State<ExtendedTextSelection>
   /// focus, the control will then attach to the keyboard and request that the
   /// keyboard become visible.
   void requestKeyboard() {
-    if (_hasFocus) {
-      _openInputConnection();
-    } else {
-      _effectiveFocusNode.requestFocus();
-    }
+    // if (_hasFocus) {
+    //   _openInputConnection();
+    // } else {
+    //   _effectiveFocusNode.requestFocus();
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    _focusAttachment?.reparent();
+    // _focusAttachment?.reparent();
     final ThemeData themeData = Theme.of(context);
     _pointerHandlerState = context.findAncestorStateOfType<ExtendedTextSelectionPointerHandlerState>();
     if (_pointerHandlerState != null) {
@@ -284,7 +284,8 @@ class ExtendedTextSelectionState extends State<ExtendedTextSelection>
                 selectionWidthStyle: widget.selectionWidthStyle,
                 selectionHeightStyle: widget.selectionHeightStyle,
                 overflowWidget: widget.overFlowWidget,
-                hasFocus: _effectiveFocusNode.hasFocus,
+                // hasFocus: _effectiveFocusNode.hasFocus,
+                hasFocus: false,
                 textSelectionDelegate: this,
               ),
             )));
@@ -557,12 +558,12 @@ class ExtendedTextSelectionState extends State<ExtendedTextSelection>
   }
 
   void _openOrCloseInputConnectionIfNeeded() {
-    if (_hasFocus && _focusNode.consumeKeyboardToken()) {
-      _openInputConnection();
-    } else if (!_hasFocus) {
-      _closeInputConnectionIfNeeded();
-      //widget.controller.clearComposing();
-    }
+    // if (_hasFocus && _focusNode.consumeKeyboardToken()) {
+    //   _openInputConnection();
+    // } else if (!_hasFocus) {
+    //   _closeInputConnectionIfNeeded();
+    //   //widget.controller.clearComposing();
+    // }
   }
 
   TextInputConfiguration get textInputConfiguration => const TextInputConfiguration(
